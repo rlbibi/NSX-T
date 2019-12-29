@@ -1,3 +1,7 @@
+# preparing your Bare Metal Server
+yum install -y tcpdump boost-filesystem PyYAML boost-iostreams boost-chrono python-mako python-netaddr python-six gperftools-libs libunwind libelf-dev snappy boost-date-time c-ares redhat-lsb-core wget net-tools yum-utils lsof python-gevent libev python-greenlet libvirt-libs ansible git
+
+
 # Ansbile for Bare Metal Server
 Ansible for Bare Metal Server is a set of automated scripts to setup Application 
 Interface for Bare Metal Server;
@@ -7,10 +11,6 @@ vi hosts
 
 please enter all the info needed : 
 for example : 
-################################################################################
-### Copyright (C) 2018 VMware, Inc.  All rights reserved.
-### SPDX-License-Identifier: BSD-2-Clause
-################################################################################
 
 # Create an group that contains the Bare Metal Servers
 [TransportNodes:children]
@@ -50,7 +50,7 @@ localhost ansible_ssh_host=localhost static_ip=10.11.11.20 netmask=255.255.255.0
 # NSX Manager Credential
 nsxmanager ip=192.168.110.10 username=admin password=1234! thumbprint=14437c1c871229c6fe4c7afc3ebf755b74
 
-# Support Modes
+# Ansible - Support Methods Modes
 1. Static  
 Enable static configuration on Application Interface;
 
