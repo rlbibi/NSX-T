@@ -2,6 +2,54 @@
 Ansible for Bare Metal Server is a set of automated scripts to setup Application 
 Interface for Bare Metal Server;
 
+configure hosts file 
+vi hosts
+
+please enter all the info needed : 
+for example : 
+################################################################################
+### Copyright (C) 2018 VMware, Inc.  All rights reserved.
+### SPDX-License-Identifier: BSD-2-Clause
+################################################################################
+
+# Create an group that contains the Bare Metal Servers
+[TransportNodes:children]
+servers_static
+servers_dhcp
+servers_migration
+
+# Set variables common for all Bare Metal Servers
+[TransportNodes:vars]
+# SSH user
+ansible_ssh_user=root
+ansible_ssh_pass=VMware1!
+
+rhel_dependency=["tcpdump", "boost-filesystem", "PyYAML", "boost-iostreams", "boost-chrono", "python-mako", "python-netaddr", "python-six", "gperftools-libs", "libunwind", "snappy", "boost-date-time", "c-ares", "redhat-lsb-core", "wget", "net-tools", "yum-utils", "lsof", "libvirt-libs", "python-gevent", "libev", "python-greenlet"]
+
+ubuntu16_dependency=["libunwind8", "libgflags2v5", "libgoogle-perftools4", "traceroute", "python-mako", "python-simplejson", "python-unittest2", "python-yaml", "python-netaddr", "libboost-filesystem1.58.0", "libboost-chrono1.58.0", "libgoogle-glog0v5", "dkms", "libboost-date-time1.58.0", "python-protobuf", "python-gevent", "libsnappy1v5", "libleveldb1v5", "libboost-program-options1.58.0", "libboost-thread1.58.0", "libboost-iostreams1.58.0", "libvirt0", "libelf-dev"]
+
+ubuntu18_dependency=["traceroute", "python-mako", "python-netaddr", "python-simplejson", "python-unittest2", "python-yaml", "python-openssl", "dkms", "libvirt0", "libelf-dev"]
+
+suse12_dependency=["net-tools", "tcpdump", "python-simplejson", "python-netaddr", "python-PyYAML", "python-six", "libunwind", "wget", "libvirt-libs", "lsof", "libcap-progs"]
+
+# host group for servers
+[servers_static]
+localhost ansible_ssh_host=localhost static_ip=10.11.11.20 netmask=255.255.255.0 ls_name=web-centos
+
+[servers_dhcp]
+
+[servers_migration]
+#server6 ansible_ssh_host= migrate_intf= ls_name=
+
+[servers_restoration]
+#server6
+
+# NSX Configuration
+[NSX]
+#============================
+# NSX Manager Credential
+nsxmanager ip=192.168.110.10 username=admin password=1234! thumbprint=14437c1c871229c6fe4c7afc3ebf755b74
+
 # Support Modes
 1. Static  
 Enable static configuration on Application Interface;
